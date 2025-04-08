@@ -1,5 +1,6 @@
 # AprioriGO: High-Performance Association Rule Mining
 
+[![Build Status](https://github.com/RiceaRaul/AprioriGO/actions/workflows/go.yml/badge.svg)](https://github.com/RiceaRaul/AprioriGO/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/RiceaRaul/AprioriGO)](https://goreportcard.com/report/github.com/RiceaRaul/AprioriGO)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
