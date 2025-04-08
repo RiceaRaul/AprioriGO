@@ -1,0 +1,84 @@
+# GitHub Actions workflow for AprioriGO
+name: AprioriGO CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+      - name: Install golangci-lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+      - name: Run golangci-lint
+        run: golangci-lint run ./...
+
+  build:
+    name: Build
+    needs: lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            output_name: apriori_linux
+          - os: windows-latest
+            output_name: apriori_windows.exe
+          - os: macos-latest
+            output_name: apriori_darwin
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'
+      - name: Build
+        run: go build -v -o ${{ matrix.output_name }} ./cmd/apriori
+      - name: Build Benchmark
+        run: go build -v -o benchmark_${{ matrix.output_name }} ./cmd/benchmark
+      - name: Build Visualize
+        run: go build -v -o visualize_${{ matrix.output_name }} ./cmd/visualize
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.output_name }}_binaries
+          path: |
+            ./${{ matrix.output_name }}
+            ./benchmark_${{ matrix.output_name }}
+            ./visualize_${{ matrix.output_name }}
+
+  release:
+    name: Create Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./apriori_linux_binaries/apriori_linux
+            ./apriori_linux_binaries/benchmark_apriori_linux
+            ./apriori_linux_binaries/visualize_apriori_linux
+            ./apriori_windows.exe_binaries/apriori_windows.exe
+            ./apriori_windows.exe_binaries/benchmark_apriori_windows.exe
+            ./apriori_windows.exe_binaries/visualize_apriori_windows.exe
+            ./apriori_darwin_binaries/apriori_darwin
+            ./apriori_darwin_binaries/benchmark_apriori_darwin
+            ./apriori_darwin_binaries/visualize_apriori_darwin
+          draft: false
+          prerelease: false
+          generate_release_notes: true
