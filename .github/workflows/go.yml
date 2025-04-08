@@ -3,9 +3,11 @@ name: AprioriGO CI
 on:
   push:
     branches: [ "main" ]
-    tags: ['*'] 
   pull_request:
     branches: [ "main" ]
+  create:
+    tags:
+      - 'v*'
 jobs:
   lint:
     name: Lint
