@@ -1,12 +1,12 @@
 # GitHub Actions workflow for AprioriGO
 name: AprioriGO CI
-
 on:
   push:
     branches: [ "main" ]
+    tags:
+      - 'v*'  # This will trigger on any tag that starts with v
   pull_request:
     branches: [ "main" ]
-
 jobs:
   lint:
     name: Lint
@@ -21,7 +21,6 @@ jobs:
         run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
       - name: Run golangci-lint
         run: golangci-lint run ./...
-
   build:
     name: Build
     needs: lint
@@ -56,7 +55,6 @@ jobs:
             ./${{ matrix.output_name }}
             ./benchmark_${{ matrix.output_name }}
             ./visualize_${{ matrix.output_name }}
-
   release:
     name: Create Release
     if: startsWith(github.ref, 'refs/tags/v')
