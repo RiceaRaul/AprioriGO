@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/RiceaRaul/apriori/internal/models"
+	"github.com/RiceaRaul/AprioriGO/internal/models"
 )
 
 // SaveRulesToCSV saves association rules to a CSV file

@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/RiceaRaul/apriori/internal/algorithm"
-	"github.com/RiceaRaul/apriori/internal/loader"
-	"github.com/RiceaRaul/apriori/internal/models"
+	"github.com/RiceaRaul/AprioriGO/internal/algorithm"
+	"github.com/RiceaRaul/AprioriGO/internal/loader"
+	"github.com/RiceaRaul/AprioriGO/internal/models"
 )
 
 type BenchmarkResult struct {

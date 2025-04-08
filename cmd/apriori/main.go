@@ -6,9 +6,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/RiceaRaul/apriori/internal/algorithm"
-	"github.com/RiceaRaul/apriori/internal/loader"
-	"github.com/RiceaRaul/apriori/internal/output"
+	"github.com/RiceaRaul/AprioriGO/internal/algorithm"
+	"github.com/RiceaRaul/AprioriGO/internal/loader"
+	"github.com/RiceaRaul/AprioriGO/internal/output"
 )
 
 func main() {

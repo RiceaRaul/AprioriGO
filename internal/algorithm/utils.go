@@ -1,7 +1,7 @@
 package algorithm
 
 import (
-	"github.com/RiceaRaul/apriori/internal/models"
+	"github.com/RiceaRaul/AprioriGO/internal/models"
 )
 
 // generateAllSubsets generates all non-empty subsets of a set

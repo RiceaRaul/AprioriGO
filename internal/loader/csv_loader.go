@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/RiceaRaul/apriori/internal/models"
+	"github.com/RiceaRaul/AprioriGO/internal/models"
 )
 
 // LoadFromCSV loads transactions from a CSV file with basket and item columns

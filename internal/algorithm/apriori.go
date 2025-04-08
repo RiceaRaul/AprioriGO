@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/RiceaRaul/apriori/internal/models"
+	"github.com/RiceaRaul/AprioriGO/internal/models"
 )
 
 // FindFrequentItemsets finds frequent itemsets using the Apriori algorithm
