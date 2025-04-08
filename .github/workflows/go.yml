@@ -49,7 +49,7 @@ jobs:
       - name: Build Visualize
         run: go build -v -o visualize_${{ matrix.output_name }} ./cmd/visualize
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.output_name }}_binaries
           path: |
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
