@@ -202,7 +202,7 @@ Real benchmark results from our comprehensive testing:
 | 0.001   | 0.2        | 3          | 3,928     | 5,612    | 5,094 | 0.77            |
 | 0.005   | 0.1        | 4          | 860       | 725      | 1,103 | 0.78            |
 
-*Testing system: Intel Core i7-10700K, 32GB RAM, Go 1.22.0*
+*Testing system: AMD Ryzen™ 7 8845HS, 16GB RAM, Go 1.22.0*
 
 ## Contributing
 
